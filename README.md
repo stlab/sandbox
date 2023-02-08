@@ -2,7 +2,7 @@
 
 This project specifies a fully self-contained C++ development environment by combining VSCode Devcontainers, `vcpkg`, and cmake.
 
-**This is alpha-quality software**. Suggestions and issues are [welcome]().
+**This is alpha-quality software**. Suggestions and issues are [welcome](https://github.com/stlab/sandbox/issues).
 
 # Goals
 
@@ -24,6 +24,6 @@ Note: CMake configuration will be re-run when a `CMakeLists.txt` is modified and
 
 ## Adding a Dependency
 
-1. Update `vcpkg.json` per [vcpkg's documentation]()
+1. Update `vcpkg.json` per [vcpkg's Manifest Mode documentation](https://vcpkg.readthedocs.io/en/latest/users/manifests/)
 2. In `MyCppApp/CMakeLists.txt`, add a corresponding `find_package` directive, and update `target_link_libraries` to link to your new dependency.
 3. Rebuild the project (it should not be necessary to rebuild the environment image).
