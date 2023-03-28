@@ -3,16 +3,5 @@
 ARG VARIANT=debian-11
 FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 
-# I feel out of the loop. Why does `apt-get install -y cmake` not install the latest version?
-# That seems to be fetching 3.18...
-RUN apt-get update \
-  && apt-get -y install build-essential \
-  && apt-get install -y wget \
-  && rm -rf /var/lib/apt/lists/* \
-  && wget https://github.com/Kitware/CMake/releases/download/v3.25.2/cmake-3.25.2-linux-aarch64.sh \
-      -q -O /tmp/cmake-install.sh \
-      && chmod u+x /tmp/cmake-install.sh \
-      && mkdir /opt/cmake-3.25.2 \
-      && /tmp/cmake-install.sh --skip-license --prefix=/opt/cmake-3.25.2 \
-      && rm /tmp/cmake-install.sh \
-      && ln -s /opt/cmake-3.25.2/bin/* /usr/local/bin
+COPY ./scripts/install_cmake.sh .
+RUN ./install_cmake.sh
