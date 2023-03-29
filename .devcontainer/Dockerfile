@@ -3,5 +3,9 @@
 ARG VARIANT=debian-11
 FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 
-COPY ./scripts/install_cmake.sh .
+RUN apt-get update && apt-get install -y software-properties-common
+
+WORKDIR ./sandbox-setup-scripts
+ADD ./scripts .
 RUN ./install_cmake.sh
+RUN ./install_clang-format.sh
