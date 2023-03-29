@@ -34,5 +34,5 @@
 	"onCreateCommand": "git config --global --add safe.directory /usr/local/vcpkg && git --git-dir /usr/local/vcpkg/.git fetch --depth 1 origin `cat vcpkg.json | jq -r .'\"builtin-baseline\"'`",
 
 	// Comment out this line to run as root instead.
-	"remoteUser": "sandy"
+	"remoteUser": "vscode"
 }
