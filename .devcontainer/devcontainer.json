@@ -6,33 +6,37 @@
 		"dockerfile": "Dockerfile",
 		// Update 'VARIANT' to pick an Debian / Ubuntu OS version: debian-11, debian-10, debian-9, ubuntu-21.04, ubuntu-20.04, ubuntu-18.04
 		// Use Debian 11, Debian 9, Ubuntu 18.04 or Ubuntu 21.04 on local arm64/Apple Silicon
-		"args": { "VARIANT": "debian-11" }
+		"args": {
+			"VARIANT": "debian-11"
+		}
 	},
-	"runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
-		
+	"runArgs": [
+		"--cap-add=SYS_PTRACE",
+		"--security-opt",
+		"seccomp=unconfined"
+	],
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
 			// Set *default* container specific settings.json values on container create.
-			"settings": {},
-			
+			"settings": {
+				"editor.formatOnSave": true
+			},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-vscode.cpptools",
-				"ms-vscode.cmake-tools"
+				"ms-vscode.cmake-tools",
+				"xaver.clang-format"
 			]
 		}
 	},
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
 	/// Fetch the vcpkg hash specified by `builtin-baseline` in vcpkg.json to enable versioning.
 	/// See https://github.com/microsoft/vscode-remote-release/issues/7628 to motivate the `config` command.
 	/// TODO: Move this into a script file that properly handles `vcpkg.json` without `builtin-baseline`.
 	"onCreateCommand": "git config --global --add safe.directory /usr/local/vcpkg && git --git-dir /usr/local/vcpkg/.git fetch --depth 1 origin `cat vcpkg.json | jq -r .'\"builtin-baseline\"'`",
-
 	// Comment out this line to run as root instead.
 	"remoteUser": "vscode"
 }
