@@ -19,8 +19,9 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Sandbox PROPERTY CXX_STANDARD 20)
 endif()
 
-find_package(ZLIB REQUIRED)
-find_package(fmt CONFIG REQUIRED)
 find_package(doctest CONFIG REQUIRED)
+find_package(fmt CONFIG REQUIRED)
+find_package(stlab CONFIG REQUIRED)
+find_package(ZLIB REQUIRED)
 
-target_link_libraries(Sandbox PRIVATE ZLIB::ZLIB fmt::fmt doctest::doctest)
+target_link_libraries(Sandbox PRIVATE doctest::doctest fmt::fmt stlab::stlab ZLIB::ZLIB)
