@@ -5,7 +5,14 @@ FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 
 RUN apt-get update && apt-get install -y software-properties-common
 
-WORKDIR ./sandbox-setup-scripts
-ADD ./scripts .
+WORKDIR /sandbox-setup-scripts
+
+# ADD & RUN one file at a time for more efficient layer caching.
+ADD ./scripts/install_cmake.sh .
 RUN ./install_cmake.sh
-RUN ./install_clang-format.sh
+
+ADD ./scripts/install_clang_tooling.sh .
+RUN ./install_clang_tooling.sh
+
+ADD ./scripts/install_ninja.sh .
+RUN ./install_ninja.sh

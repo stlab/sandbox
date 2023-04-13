@@ -11,9 +11,12 @@
 # these two drawbacks are acceptable; we know our current generator (ninja) supports CONFIGURE_DEPENDS, and we
 # expect our project sizes to be consistently small to make the overhead in 2) imperceptible.
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "*.cpp")
+file(GLOB_RECURSE modules CONFIGURE_DEPENDS "*.cppm")
 file(GLOB_RECURSE headers_h CONFIGURE_DEPENDS "*.h")
 file(GLOB_RECURSE headers_hpp CONFIGURE_DEPENDS "*.hpp")
+
 add_executable (Sandbox ${sources} ${headers_h} ${headers_hpp})
+target_sources(Sandbox PUBLIC FILE_SET cxx_modules TYPE CXX_MODULES FILES ${modules})
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Sandbox PROPERTY CXX_STANDARD 20)

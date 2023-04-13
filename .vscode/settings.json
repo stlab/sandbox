@@ -1,3 +1,7 @@
 {
-    "cmake.useCMakePresets": "auto"
+    "cmake.useCMakePresets": "auto",
+    "files.associations": {
+        // Syntax-highlight .cppm files as if they were .cpp.
+        "*.cppm": "cpp"
+    },
 }

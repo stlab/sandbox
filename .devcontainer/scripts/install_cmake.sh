@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CMAKE_VERSION=3.25.2
+CMAKE_VERSION=3.26.3
 
 apt-get update && \
 apt-get -y install build-essential && \
